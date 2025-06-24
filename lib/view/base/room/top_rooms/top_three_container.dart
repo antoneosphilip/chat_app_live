@@ -71,6 +71,22 @@ class TopThreeContainer extends StatelessWidget {
                                 ),
                               ),
                             ),
+                             const SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Center(
+                                  child: true
+                                  // homeController.topRooms!.length >= 3
+                                      ? SquareTopRoomsItem(
+                                          room: homeController.staticBannerImage[2],
+                                          no: '3',
+                                        )
+                                      : SizedBox(),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       )

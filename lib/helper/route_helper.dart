@@ -12,6 +12,7 @@ import 'package:live_app/view/screens/all_families/all_families_screen.dart';
 import 'package:live_app/view/screens/app_mode/app_mode_screen.dart';
 import 'package:live_app/view/screens/auth/sign_in_screen.dart';
 import 'package:live_app/view/screens/auth/sign_up_screen.dart';
+import 'package:live_app/view/screens/auth/welcome_screen.dart';
 import 'package:live_app/view/screens/bind_phone_number/bind_phone_number.dart';
 import 'package:live_app/view/screens/black_list/black_list.dart';
 import 'package:live_app/view/screens/blocked_moments/blocked_moments.dart';
@@ -47,6 +48,8 @@ class RouteHelper {
   static const String initial = '/';
   static const String splash = '/splash';
   static const String language = '/language';
+    static const String welcome = '/welcome';
+
   static const String onBoarding = '/on-boarding';
   static const String signIn = '/sign-in';
   static const String signUp = '/sign-up';
@@ -171,7 +174,7 @@ class RouteHelper {
     }
     return '$forgotPassword?page=${fromSocialLogin ? 'social-login' : 'forgot-password'}&data=${fromSocialLogin ? data : 'null'}';
   }
-
+  
   static String getResetPasswordRoute(
           String? phone, String token, String page) =>
       '$resetPassword?phone=$phone&token=$token&page=$page';
@@ -180,7 +183,7 @@ class RouteHelper {
       '$search?query=${queryText ?? ''}';
 
   static String getProfileRoute() => profile;
-
+  static String getWelcomeRoute() => welcome;
   static String getUpdateProfileRoute() => updateProfile;
 
   static String getNotificationRoute({bool? fromNotification}) =>
@@ -336,6 +339,9 @@ class RouteHelper {
         name: language,
         page: () =>
             ChooseLanguageScreen(fromMenu: Get.parameters['page'] == 'menu')),
+    GetPage(
+        name: welcome,
+        page: () => const WelcomeScreen()),
     GetPage(name: settingScreen, page: () => const SettingScreen()),
     GetPage(
         name: signIn,

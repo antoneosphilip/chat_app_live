@@ -31,7 +31,7 @@ class SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.toNamed(RouteHelper.signIn);
+      Get.toNamed(RouteHelper.welcome);
     },);
     // bool firstTime = true;
     // _onConnectivityChanged = Connectivity()

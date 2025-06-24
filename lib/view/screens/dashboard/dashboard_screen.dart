@@ -159,54 +159,59 @@ class DashboardScreenState extends State<DashboardScreen> {
                                   blurRadius: 5)
                             ],
                           ),
-                          child: Center(
-                            child: SizedBox(
-                              width: size.width,
-                              height: 80,
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    BottomNavItem(
-                                      title: _pageIndex == 0 ? '' : 'rooms'.tr,
-                                      selectedIcon: Images.homeSelected,
-                                      unSelectedIcon: Images.homeUnselected,
-                                      isSelected: _pageIndex == 0,
-                                      onTap: () => _setPage(0),
-                                    ),
-                                    BottomNavItem(
-                                      title: _pageIndex == 1 ? '' : 'mine'.tr,
-                                      selectedIcon: Images.hmineSelected,
-                                      unSelectedIcon: Images.mineUnselected,
-                                      isSelected: _pageIndex == 1,
-                                      onTap: () => _setPage(1),
-                                    ),
-                                    // BottomNavItem(
-                                    //   title: _pageIndex == 2 ? '' : 'game'.tr,
-                                    //   selectedIcon: Images.gameSelected,
-                                    //   unSelectedIcon: Images.gameUnselected,
-                                    //   isSelected: _pageIndex == 2,
-                                    //   onTap: () => _setPage(2),
-                                    // ),
-                                    BottomNavItem(
-                                      title:
-                                          _pageIndex == 3 ? '' : 'message'.tr,
-                                      selectedIcon: Images.msgSelected,
-                                      unSelectedIcon: Images.msgUnselected,
-                                      isSelected: _pageIndex == 3,
-                                      onTap: () =>
-                                          Get.to(() => ChatScreenWidget()),
-                                    ),
-                                    // BottomNavItem(
-                                    //   title: _pageIndex == 4 ? '' : 'room'.tr,
-                                    //   selectedIcon: Images.roomSelected,
-                                    //   unSelectedIcon: Images.roomUnselected,
-                                    //   isSelected: _pageIndex == 4,
-                                    //   onTap: () => _setPage(4),
-                                    // ),
-                                  ]),
-                            ),
-                          ),
+                          child: Align(
+  alignment: Alignment.center,
+  child: Container(
+    width: MediaQuery.of(context).size.width,
+    height: 60.h,
+    decoration: const BoxDecoration(
+    
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Color(0xFFFF6B6B), // Light red/pink
+          Color(0xFFFFB347), // Orange
+          Color(0xFFFF69B4), // Hot pink
+        ],
+      ),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        BottomNavItem(
+          title: 'Room',
+          selectedIcon: Images.roomSelected,
+          unSelectedIcon: Images.roomUnselected,
+          isSelected: _pageIndex == 0,
+          onTap: () => _setPage(0),
+        ),
+        BottomNavItem(
+          title: 'Game',
+          selectedIcon: Images.gameSelected,
+          unSelectedIcon: Images.gameUnselected,
+          isSelected: _pageIndex == 1,
+          onTap: () => _setPage(1),
+        ),
+        BottomNavItem(
+          title: 'Chat',
+          selectedIcon: Images.msgSelected,
+          unSelectedIcon: Images.msgUnselected,
+          isSelected: _pageIndex == 2,
+          onTap: () => _setPage(2),
+        ),
+        BottomNavItem(
+          title: 'Me',
+          selectedIcon: Images.hmineSelected,
+          unSelectedIcon: Images.mineUnselected,
+          isSelected: _pageIndex == 3,
+          onTap: () => _setPage(3),
+        ),
+      ],
+    ),
+  ),
+),
+
                         ),
                       ],
                     );

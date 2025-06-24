@@ -36,7 +36,7 @@ class BottomNavItem extends StatelessWidget {
                           color: isSelected
                               ? Theme.of(context).primaryColor
                               : Theme.of(context).textTheme.bodyMedium!.color!,
-                          fontSize: 9),
+                          fontSize: 11),
                     )
                   : const SizedBox(
                       height: 10,

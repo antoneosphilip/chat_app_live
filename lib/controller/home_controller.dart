@@ -11,9 +11,26 @@ class HomeController extends GetxController implements GetxService {
   bool isLoading = false;
   int page = 1;
   List<String> staticBannerImage=[
-    "assets/images/room_type_game_select.png",
-    "assets/images/room_type_game_select.png",
-    "assets/images/room_type_game_select.png"
+    "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
+    "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
+    "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0"
+  ];
+   List<String> staticRoomGrid=[
+    "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
+    "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
+    "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
+        "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0"
+
+  ];
+    List<String> staticRoomGridVieWBottom=[
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain", 
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain", 
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain",
+    "https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain",
   ];
   List<Banner>? mainBanners = [];
   List<Banner>? liftBanners = [];
@@ -37,11 +54,11 @@ class HomeController extends GetxController implements GetxService {
         intro: "Welcome to the best music room!",
         note: "Please respect others",
         totalIncome: 5000,
-        cover: "https://example.com/cover1.jpg",
-        background: "https://example.com/bg1.jpg",
+        cover: "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
+        background: "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
         frame: "https://example.com/frame1.png",
         type_name: "Music",
-        type_image: "https://example.com/music-icon.png",
+        type_image: "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
         hasPassword: false,
         isUserRoomBlocked: false,
         isUserRoomChatBlocked: false,
@@ -53,7 +70,7 @@ class HomeController extends GetxController implements GetxService {
             id: 101,
             uuid: 1001,
             name: "John Doe",
-            image: "https://example.com/user1.jpg",
+            image: "https://th.bing.com/th/id/R.055515f9ac83ee0e6b755b501422641b?rik=ftTywHKsK2J8AQ&pid=ImgRaw&r=0",
             country: CountryModel(
                 id: 1,
                 name: "United States",
