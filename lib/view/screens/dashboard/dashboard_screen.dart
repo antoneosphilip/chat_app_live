@@ -18,6 +18,7 @@ import 'package:live_app/view/screens/dashboard/widget/daily_login_alert_dialog.
 import 'package:live_app/view/screens/dashboard/widget/daily_login_container.dart';
 import 'package:live_app/view/screens/dashboard/widget/daily_login_image.dart';
 import 'package:live_app/view/screens/dashboard/widget/daily_login_remind_me.dart';
+import 'package:live_app/view/screens/game/game_screen.dart';
 import 'package:live_app/view/screens/home/home_screen.dart';
 import 'package:live_app/view/screens/me/my_dashboard_screen.dart';
 
@@ -60,9 +61,14 @@ class DashboardScreenState extends State<DashboardScreen> {
 
     _screens = [
       const HomeScreen(),
-      const MyDashboardScreen(),
+             
+       
+                  
+       GameScreen(),
+                   const ConversationScreen(),
+
+const MyDashboardScreen(),
       // const SizedBox(),
-      const ConversationScreen(),
       // const SizedBox(),
     ];
 
