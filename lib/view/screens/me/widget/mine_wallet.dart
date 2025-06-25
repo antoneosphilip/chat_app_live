@@ -1,186 +1,214 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:live_app/controller/user_controller.dart';
-
-import '../../../widgets/custom_card.dart';
-import '../../wallet/wallet_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MineWallet extends StatelessWidget {
-  final UserController userController;
-  const MineWallet({super.key, required this.userController});
+  const MineWallet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return        InkWell(
-      onTap: () {
-        Get.to(() => const WalletScreen());
-      },
-      child: CustomCard(
-        // backgroundImage: 'assets/images/one_bg.png',
-          child: Column(
-            crossAxisAlignment:
-            CrossAxisAlignment.start,
-            children: [
-              Text('my_wallet'.tr),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width:
-                MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context)
-                    .size
-                    .height *
-                    0.15,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        child: Container(
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage(
-                                  'assets/images/wallet_bg.webp'),
-                            ),
-                          ),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                Image(
-                                  width: 30,
-                                  height: 30,
-                                  image: AssetImage(
-                                    'assets/images/diamond_icon.webp',
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  '${userController.userModelStatic?.wallet?.diamond}',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors
-                                          .white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      child: Row(
+        children: [
+          // Wallet Card
+          Expanded(
+            flex: 2,
+            child: WalletCard(balance: 0),
+          ),
+          SizedBox(width: 10.w),
+          // Column of 2 cards
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                // Sada Levels
+                Container(
+                  height: 46.h,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF7EE8FA), Color(0xFF80FF72)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
+                    borderRadius: BorderRadius.circular(14.r),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 10.w),
+                      Expanded(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding:
-                                EdgeInsets.all(5),
-                                child: Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      horizontal:
-                                      15),
-                                  decoration:
-                                  BoxDecoration(
-                                    image:
-                                    DecorationImage(
-                                      fit:
-                                      BoxFit.fill,
-                                      image: AssetImage(
-                                          'assets/images/gold_bg.webp'),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Image(
-                                        width: 25,
-                                        height: 25,
-                                        image:
-                                        AssetImage(
-                                          'assets/images/gold_icon.webp',
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        '${userController.userModelStatic?.wallet?.gold}',
-                                        style: TextStyle(
-                                            fontSize:
-                                            15,
-                                            color: Colors
-                                                .white),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                            Text(
+                              'Sada Levels',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.sp,
                               ),
                             ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding:
-                                EdgeInsets.all(5),
-                                child: Container(
-                                  padding: const EdgeInsets
-                                      .symmetric(
-                                      horizontal:
-                                      15),
-                                  decoration:
-                                  BoxDecoration(
-                                    image:
-                                    DecorationImage(
-                                      fit:
-                                      BoxFit.fill,
-                                      image: AssetImage(
-                                          'assets/images/game_bg.webp'),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Image(
-                                        width: 25,
-                                        height: 25,
-                                        image:
-                                        AssetImage(
-                                          'assets/images/game_icon.webp',
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        '${userController.userModelStatic?.wallet?.gameCoins}',
-                                        style: TextStyle(
-                                            fontSize:
-                                            15,
-                                            color: Colors
-                                                .white),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                            Text(
+                              'upgrade now',
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.8),
+                                fontSize: 11.sp,
                               ),
                             ),
                           ],
                         ),
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
+                        child: Icon(Icons.shield,
+                            color: Colors.white, size: 28.sp),
+                      ),
+                    ],
+                  ),
                 ),
+                SizedBox(height: 8.h),
+                // Medals Wall
+                Container(
+                  height: 46.h,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFF9D776), Color(0xFFD7B46A)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(14.r),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 10.w),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Medals Wall',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                            Text(
+                              'More details',
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.8),
+                                fontSize: 11.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
+                        child: Icon(Icons.emoji_events,
+                            color: Colors.white, size: 28.sp),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class WalletCard extends StatelessWidget {
+  final int balance;
+  const WalletCard({Key? key, this.balance = 0}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFFFE7B2), Color(0xFFF9D776)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.amber.withOpacity(0.08),
+            blurRadius: 8,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(16.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // الصف العلوي: محفظة - Wallet - هدية
+            Row(
+              children: [
+                Image.network(
+                  'https://pngimg.com/uploads/wallet/wallet_PNG77077.png',
+                  width: 25.w,
+                  height: 25.w,
+                ),
+                SizedBox(width: 10.w),
+                Text(
+                  'Wallet',
+                  style: TextStyle(
+                    color: Colors.brown[900],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp,
+                  ),
+                ),
+                Spacer(),
+                Image.network(
+                  'https://pngimg.com/uploads/crown/crown_PNG23846.png',
+                  width: 42.w,
+                  height: 42.w,
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            // المستطيل السفلي
+            Container(
+              width: double.infinity,
+              height: 44.h,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.85),
+                borderRadius: BorderRadius.circular(14.r),
               ),
-            ],
-          )),
+              child: Row(
+                children: [
+                  SizedBox(width: 12.w),
+                  Image.network(
+                    'https://pngimg.com/uploads/coin/coin_PNG36907.png',
+                    width: 28.w,
+                    height: 28.w,
+                  ),
+                  SizedBox(width: 8.w),
+                  Text(
+                    '$balance',
+                    style: TextStyle(
+                      color: Colors.brown[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(Icons.chevron_right,
+                      color: Colors.brown[400], size: 28.sp),
+                  SizedBox(width: 8.w),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

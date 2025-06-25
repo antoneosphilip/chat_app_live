@@ -30,7 +30,7 @@ class SquareTopRoomsItem extends StatelessWidget {
         // frame: room.frame != null
         //     ? "${AppConstants.mediaUrl}/${room.frame}"
         //     : null,
-        name:"test",
+        name: "test",
         no: no,
         hotIcon: 'assets/images/hot.webp',
         // hot: "20",

@@ -17,86 +17,70 @@ class UserInformationMine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: EdgeInsets.only(left: 65.w),
-      child: Row(
-        mainAxisAlignment:
-        MainAxisAlignment.spaceEvenly,
-        children: [
-          InkWell(
-            onTap: () {
-              Get.find<RelationshipController>()
-                  .getFriendList();
-              Get.to(() => const FriendsScreen());
-            },
-            child: Column(
-              children: [
-                Text(
-                  'friends'.tr,
-                  style: TextStyle(
-                      color: Colors.black38,fontSize: 12.sp),
-                ),
-                Text(
-                    '${userController.userModelStatic?.friendsCount}'),
-              ],
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        InkWell(
+          onTap: () {
+            Get.find<RelationshipController>().getFriendList();
+            Get.to(() => const FriendsScreen());
+          },
+          child: Column(
+            children: [
+              Text('${userController.userModelStatic?.friendsCount}'),
+              Text(
+                'friends'.tr,
+                style: TextStyle(color: Colors.black38, fontSize: 14.sp),
+              ),
+            ],
           ),
-          InkWell(
-            onTap: () {
-              Get.find<RelationshipController>()
-                  .getFollowingsList();
-              Get.to(() => FollowingsScreen());
-            },
-            child: Column(
-              children: [
-                Text(
-                  'followings'.tr,
-                  style: TextStyle(
-                      color: Colors.black38,fontSize: 12.sp),
-                ),
-                Text(
-                    '${userController.userModelStatic?.followingsCount}'),
-              ],
-            ),
+        ),
+        InkWell(
+          onTap: () {
+            Get.find<RelationshipController>().getFollowingsList();
+            Get.to(() => FollowingsScreen());
+          },
+          child: Column(
+            children: [
+              Text('${userController.userModelStatic?.followingsCount}'),
+              Text(
+                'followings'.tr,
+                style: TextStyle(color: Colors.black38, fontSize: 14.sp),
+              ),
+            ],
           ),
-          InkWell(
-            onTap: () {
-              Get.find<RelationshipController>()
-                  .getFollowersList();
-              Get.to(() => FollowersScreen());
-            },
-            child: Column(
-              children: [
-                Text(
-                  'followers'.tr,
-                  style: TextStyle(
-                      color: Colors.black38,fontSize: 12.sp),
-                ),
-                Text(
-                    '${userController.userModelStatic?.followersCount}'),
-              ],
-            ),
+        ),
+        InkWell(
+          onTap: () {
+            Get.find<RelationshipController>().getFollowersList();
+            Get.to(() => FollowersScreen());
+          },
+          child: Column(
+            children: [
+              Text('${userController.userModelStatic?.followersCount}'),
+              Text(
+                'followers'.tr,
+                style: TextStyle(color: Colors.black38, fontSize: 14.sp),
+              ),
+            ],
           ),
-          InkWell(
-            onTap: () {
-              Get.find<RelationshipController>()
-                  .getVisitorsList();
-              Get.to(() => VisitorsScreen());
-            },
-            child: Column(
-              children: [
-                Text(
-                  'visitors'.tr,
-                  style: TextStyle(
-                      color: Colors.black38,fontSize: 12.sp),
-                ),
-                Text(
-                    '${userController.userModelStatic?.visitorsCount}'),
-              ],
-            ),
+        ),
+        InkWell(
+          onTap: () {
+            Get.find<RelationshipController>().getVisitorsList();
+            Get.to(() => VisitorsScreen());
+          },
+          child: Column(
+            children: [
+              Text('${userController.userModelStatic?.visitorsCount}'),
+              Text(
+                'visitors'.tr,
+                style: TextStyle(color: Colors.black38, fontSize: 14.sp),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -73,126 +73,159 @@ class _RoomsScreenState extends State<RoomsScreen> {
           print("hasss more dataa ${homeController.hasMoreData}");
 
           return
-            // homeController.isLoading
-            //   ? const LoadingIndicator()
+              // homeController.isLoading
+              //   ? const LoadingIndicator()
               Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                  ),
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Column(
-                      children: [
-                      
-                        Center(
-                          child: SizedBox(
-                            width: Get.width,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                     SizedBox(
-                          height: 90.h,
-                        ),
-                                  TopHome(homeController: homeController,),
-                                  // Row(
-                                  //   mainAxisAlignment:
-                                  //       MainAxisAlignment.spaceEvenly,
-                                  //   children: [
-                                  //     CarouselViewWidget(
-                                  //       width: (MediaQuery.of(context)
-                                  //                   .size
-                                  //                   .width -
-                                  //               30) *
-                                  //           0.5,
-                                  //       height: MediaQuery.of(context)
-                                  //               .size
-                                  //               .height *
-                                  //           0.10,
-                                  //       imageIndexName: 'image',
-                                  //       baseUrl:
-                                  //           "${AppConstants.mediaUrl}/banner",
-                                  //       itemList: homeController.staticBannerImage,
-                                  //       onPageChanged: (int,
-                                  //           CarouselPageChangedReason) {},
-                                  //       onTap: (int index) {},
-                                  //       // scrollDirection: Axis.vertical,
-                                  //       // duration: 4,
-                                  //     ),
-                                  //     CarouselViewWidget(
-                                  //       width: (MediaQuery.of(context)
-                                  //                   .size
-                                  //                   .width -
-                                  //               30) *
-                                  //           0.5,
-                                  //       height: MediaQuery.of(context)
-                                  //               .size
-                                  //               .height *
-                                  //           0.10,
-                                  //       imageIndexName: 'image',
-                                  //       baseUrl:
-                                  //           "${AppConstants.mediaUrl}/banner",
-                                  //       itemList: homeController.staticBannerImage,
-                                  //       onPageChanged: (int,
-                                  //           CarouselPageChangedReason) {},
-                                  //       onTap: (int index) {},
-                                  //       // scrollDirection: Axis.vertical,
-                                  //       // duration: 2,
-                                  //     )
-                                  //   ],
-                                  // ),
-                                  TopThreeContainer(
-                                    homeController: homeController,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(), // لو داخل ScrollView
-                                      padding: EdgeInsets.zero,
-                                      itemCount: homeController.staticRoomGrid.length,
-                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,           // عدد الأعمدة
-                                        mainAxisSpacing: 8.0,        // المسافة العمودية بين العناصر
-                                        crossAxisSpacing: 8.0,     
-                                          // المسافة الأفقية بين العناصر
-                                        childAspectRatio: 1, 
-                                             // لأنك عايز العنصر يكون مربع (width == height)
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+            ),
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  Center(
+                    child: SizedBox(
+                      width: Get.width,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 90.h,
+                            ),
+                            TopHome(
+                              homeController: homeController,
+                            ),
+                            // Row(
+                            //   mainAxisAlignment:
+                            //       MainAxisAlignment.spaceEvenly,
+                            //   children: [
+                            //     CarouselViewWidget(
+                            //       width: (MediaQuery.of(context)
+                            //                   .size
+                            //                   .width -
+                            //               30) *
+                            //           0.5,
+                            //       height: MediaQuery.of(context)
+                            //               .size
+                            //               .height *
+                            //           0.10,
+                            //       imageIndexName: 'image',
+                            //       baseUrl:
+                            //           "${AppConstants.mediaUrl}/banner",
+                            //       itemList: homeController.staticBannerImage,
+                            //       onPageChanged: (int,
+                            //           CarouselPageChangedReason) {},
+                            //       onTap: (int index) {},
+                            //       // scrollDirection: Axis.vertical,
+                            //       // duration: 4,
+                            //     ),
+                            //     CarouselViewWidget(
+                            //       width: (MediaQuery.of(context)
+                            //                   .size
+                            //                   .width -
+                            //               30) *
+                            //           0.5,
+                            //       height: MediaQuery.of(context)
+                            //               .size
+                            //               .height *
+                            //           0.10,
+                            //       imageIndexName: 'image',
+                            //       baseUrl:
+                            //           "${AppConstants.mediaUrl}/banner",
+                            //       itemList: homeController.staticBannerImage,
+                            //       onPageChanged: (int,
+                            //           CarouselPageChangedReason) {},
+                            //       onTap: (int index) {},
+                            //       // scrollDirection: Axis.vertical,
+                            //       // duration: 2,
+                            //     )
+                            //   ],
+                            // ),
+                            TopThreeContainer(
+                              homeController: homeController,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                physics:
+                                    NeverScrollableScrollPhysics(), // لو داخل ScrollView
+                                padding: EdgeInsets.zero,
+                                itemCount: homeController.staticRoomGrid.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, // عدد الأعمدة
+                                  mainAxisSpacing:
+                                      8.0, // المسافة العمودية بين العناصر
+                                  crossAxisSpacing: 8.0,
+                                  // المسافة الأفقية بين العناصر
+                                  childAspectRatio: 1,
+                                  // لأنك عايز العنصر يكون مربع (width == height)
+                                ),
+                                itemBuilder: (context, index) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: SquareTopRoomsItem(
+                                          room: homeController
+                                              .staticRoomGrid[index],
+                                          no: '${index + 1}',
+                                        ),
                                       ),
-                                      itemBuilder: (context, index) {
-                                        return Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: SquareTopRoomsItem(
-                                                room: homeController.staticRoomGrid[index],
-                                                no: '${index + 1}',
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Image(image:NetworkImage('https://th.bing.com/th/id/OIP.4ve4zACsz1LZOlMcCUHGBAHaE8?rs=1&pid=ImgDetMain'),width: 12.w,height: 12.h,),
-                                                SizedBox(width: 4.w,),
-                                                Text("وكالة",style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),),
-                                              ],
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  SecondBanner(homeController: homeController,),
-                                  SizedBox(height: 10,),
-                                  RoomGridView(homeController: homeController,),
-                                  SizedBox(height: 80,),
-                                  // CountriesHome(homeController: homeController,),
-                                  // RoomListView(homeController: homeController,),
-                                ]),
-                          ),
-                        ),
-                      ],
+                                      Row(
+                                        children: [
+                                          Image(
+                                            image: NetworkImage(
+                                                'https://th.bing.com/th/id/OIP.4ve4zACsz1LZOlMcCUHGBAHaE8?rs=1&pid=ImgDetMain'),
+                                            width: 12.w,
+                                            height: 12.h,
+                                          ),
+                                          SizedBox(
+                                            width: 4.w,
+                                          ),
+                                          Text(
+                                            "وكالة",
+                                            style: TextStyle(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+
+                            SecondBanner(
+                              homeController: homeController,
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
+                              "الغرف المفضلة",
+                              style: TextStyle(
+                                  fontSize: 16.sp, fontWeight: FontWeight.bold),
+                            ),
+                            RoomGridView(
+                              homeController: homeController,
+                            ),
+                            SizedBox(
+                              height: 80.h,
+                            ),
+                            // CountriesHome(homeController: homeController,),
+                            // RoomListView(homeController: homeController,),
+                          ]),
                     ),
                   ),
-                );
+                ],
+              ),
+            ),
+          );
         })),
       );
     });

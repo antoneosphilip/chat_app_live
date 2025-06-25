@@ -37,18 +37,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white54,
         appBar: CustomAppBarWithTabs(
-          onTabChanged: _onTabChanged,
-          selectedTabIndex: selectedTabIndex,
+          tabBarwidget: CustomTabBarWidget(
+            onTabChanged: _onTabChanged,
+            initialIndex: selectedTabIndex,
+          ),
+        
         ),
         body: TabBarView(
           controller: _tabController,
           children: [
             // Tab 1: Hot (RoomsScreen)
             const RoomsScreen(),
-            
+           
             // Tab 2: Mine (MyRoomsScreen)
             const RoomsScreen(),
-            
+
             // Tab 3: Explore (يمكنك إنشاء شاشة جديدة أو استخدام شاشة موجودة)
             _buildExploreScreen(),
           ],
@@ -82,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(height: 10),
+            
             Text(
               'Coming Soon...',
               style: TextStyle(
@@ -106,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 class CustomTabBarWidget extends StatefulWidget {
   final Function(int) onTabChanged;
   final int initialIndex;
-  
+
   const CustomTabBarWidget({
     Key? key,
     required this.onTabChanged,
@@ -119,7 +123,7 @@ class CustomTabBarWidget extends StatefulWidget {
 
 class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
   int selectedIndex = 0;
-  
+
   final List<String> tabs = ['Hot', 'Mine', 'Explore'];
 
   @override
@@ -141,7 +145,7 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
                 int index = entry.key;
                 String tab = entry.value;
                 bool isSelected = index == selectedIndex;
-                
+
                 return GestureDetector(
                   onTap: () {
                     setState(() {
@@ -158,8 +162,11 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
                           tab,
                           style: TextStyle(
                             fontSize: 18,
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                            color: isSelected ? Colors.black : Colors.black.withOpacity(0.6),
+                            fontWeight:
+                                isSelected ? FontWeight.bold : FontWeight.w500,
+                            color: isSelected
+                                ? Colors.black
+                                : Colors.black.withOpacity(0.6),
                           ),
                         ),
                         const SizedBox(height: 5),
@@ -168,7 +175,8 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
                           height: 2,
                           width: tab.length * 8.0,
                           decoration: BoxDecoration(
-                            color: isSelected ? Colors.black : Colors.transparent,
+                            color:
+                                isSelected ? Colors.black : Colors.transparent,
                             borderRadius: BorderRadius.circular(1),
                           ),
                         ),
@@ -179,7 +187,7 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
               }).toList(),
             ),
           ),
-          
+
           // Action Buttons Section
           Row(
             children: [
@@ -196,7 +204,7 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
                 ),
               ),
               const SizedBox(width: 15),
-              
+
               // Add/Plus Button
               GestureDetector(
                 onTap: () {
@@ -218,14 +226,16 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
 }
 
 // Custom AppBar with Tabs
-class CustomAppBarWithTabs extends StatelessWidget implements PreferredSizeWidget {
-  final Function(int) onTabChanged;
-  final int selectedTabIndex;
-  
+class CustomAppBarWithTabs extends StatelessWidget
+    implements PreferredSizeWidget {
+ 
+  final Widget tabBarwidget;
+  final double? height;
+
   const CustomAppBarWithTabs({
     Key? key,
-    required this.onTabChanged,
-    this.selectedTabIndex = 0,
+    required this.tabBarwidget,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -243,14 +253,11 @@ class CustomAppBarWithTabs extends StatelessWidget implements PreferredSizeWidge
         ),
       ),
       child: SafeArea(
-        child: CustomTabBarWidget(
-          onTabChanged: onTabChanged,
-          initialIndex: selectedTabIndex,
-        ),
+        child: tabBarwidget,
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize =>  Size.fromHeight(height??100);
 }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_app/controller/user_controller.dart';
 import 'package:live_app/util/dimensions.dart';
+import 'package:live_app/view/screens/home/home_screen.dart';
 import 'package:live_app/view/screens/me/widget/mine_other.dart';
 import 'package:live_app/view/screens/me/widget/mine_wallet.dart';
 import 'package:live_app/view/screens/me/widget/shop_card.dart';
@@ -35,66 +36,53 @@ class _MyDashboardScreenState extends State<MyDashboardScreen> {
             // userController.userInfoStatic != null
             Scaffold(
                 backgroundColor: Theme.of(context).cardColor,
+                appBar: CustomAppBarWithTabs(
+                    height: 220.h,
+                    tabBarwidget: Column(children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 16.w, top: 50.h),
+                        child: const ProfileHeaderWidget(
+                          name: 'Antoneos Philip',
+                          id: '810052932',
+                          blueCount: 1,
+                          greenCount: 1,
+                        ),
+                      ),
+                      SizedBox(height: 40.h),
+                      UserInformationMine(
+                        userController: userController,
+                      ),
+                      SizedBox(height: 10.h),
+                    ])),
                 body: SingleChildScrollView(
                   child: Ink(
-                    color: Theme.of(context).primaryColor.withOpacity(0.5),
                     padding:
                         const EdgeInsets.only(top: Dimensions.paddingSizeLarge),
-                    child: Stack(
+                    child: Column(
                       children: [
-                        Column(
-                          children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(24.r),
+                                  topLeft: Radius.circular(24.r))),
+                          padding: EdgeInsets.only(top: 10.h),
+                          child: Column(children: [
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // const ShopCard(),
+                                  MineWallet(
+                                    // userController: userController,
+                                  ),
+                                  MineOther(
+                                    userController: userController,
+                                  ),
+                                ]),
                             SizedBox(
-                              height: 120.h,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(24.r),
-                                      topLeft: Radius.circular(24.r))),
-                              padding: EdgeInsets.only(top: 10.h),
-                              child: Column(children: [
-                                Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: Dimensions.paddingSizeDefault,
-                                            right:
-                                                Dimensions.paddingSizeDefault),
-                                        child: Column(
-                                          children: [
-                                            UserInformationMine(
-                                              userController: userController,
-                                            ),
-                                            SizedBox(
-                                              height: 20.h,
-                                            ),
-                                            UserNameId(
-                                              userController: userController,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      const ShopCard(),
-                                      MineWallet(
-                                        userController: userController,
-                                      ),
-                                      MineOther(
-                                        userController: userController,
-                                      ),
-                                    ]),
-                                SizedBox(
-                                  height: 100.h,
-                                )
-                              ]),
-                            ),
-                          ],
-                        ),
-                        UserMineImage(
-                          userController: userController,
+                              height: 100.h,
+                            )
+                          ]),
                         ),
                       ],
                     ),
@@ -102,6 +90,137 @@ class _MyDashboardScreenState extends State<MyDashboardScreen> {
                 ));
         // : const LoadingIndicator();
       },
+    );
+  }
+}
+
+class ProfileHeaderWidget extends StatelessWidget {
+  final String name;
+  final String id;
+  final int blueCount;
+  final int greenCount;
+
+  const ProfileHeaderWidget({
+    Key? key,
+    required this.name,
+    required this.id,
+    required this.blueCount,
+    required this.greenCount,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        // الدائرة بالحرف الأول
+        Container(
+          width: 80.w,
+          height: 80.h,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Text(
+              name.isNotEmpty ? name[0].toUpperCase() : '',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 28.sp,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(width: 12.w),
+        // الاسم وID
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              name,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Row(
+              children: [
+                Text(
+                  'ID: $id',
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 14.sp,
+                  ),
+                ),
+                SizedBox(width: 4.w),
+                Icon(Icons.copy, size: 16.sp, color: Colors.grey[600]),
+              ],
+            ),
+            SizedBox(height: 10.h),
+            Row(
+              children: [
+                _Badge(
+                  color: Color(0xFFB3E5FC),
+                  icon: Icons
+                      .diamond, // استخدم أيقونة ألماسة أو صورة SVG إذا أردت
+                  count: blueCount,
+                  iconColor: Colors.blue[800]!,
+                ),
+                SizedBox(width: 6.w),
+                _Badge(
+                  color: Color(0xFFC8E6C9),
+                  icon: Icons.verified, // استخدم أيقونة مناسبة أو صورة
+                  count: greenCount,
+                  iconColor: Colors.green[800]!,
+                ),
+              ],
+            ),
+          ],
+        ),
+        // الشارتين
+      ],
+    );
+  }
+}
+
+class _Badge extends StatelessWidget {
+  final Color color;
+  final IconData icon;
+  final int count;
+  final Color iconColor;
+
+  const _Badge({
+    Key? key,
+    required this.color,
+    required this.icon,
+    required this.count,
+    required this.iconColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: iconColor, size: 16.sp),
+          SizedBox(width: 2.w),
+          Text(
+            '$count',
+            style: TextStyle(
+              color: iconColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
