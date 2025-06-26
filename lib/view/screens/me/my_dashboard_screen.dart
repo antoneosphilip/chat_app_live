@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:live_app/controller/user_controller.dart';
 import 'package:live_app/util/dimensions.dart';
 import 'package:live_app/view/screens/home/home_screen.dart';
+import 'package:live_app/view/screens/me/widget/custom_app_bar.dart';
 import 'package:live_app/view/screens/me/widget/mine_other.dart';
 import 'package:live_app/view/screens/me/widget/mine_wallet.dart';
 import 'package:live_app/view/screens/me/widget/shop_card.dart';
@@ -35,8 +36,8 @@ class _MyDashboardScreenState extends State<MyDashboardScreen> {
         return
             // userController.userInfoStatic != null
             Scaffold(
-                backgroundColor: Theme.of(context).cardColor,
-                appBar: CustomAppBarWithTabs(
+                backgroundColor: Colors.grey[100],
+                appBar: CustomAppBarDashBoard(
                     height: 220.h,
                     tabBarwidget: Column(children: [
                       Padding(
@@ -56,8 +57,7 @@ class _MyDashboardScreenState extends State<MyDashboardScreen> {
                     ])),
                 body: SingleChildScrollView(
                   child: Ink(
-                    padding:
-                        const EdgeInsets.only(top: Dimensions.paddingSizeLarge),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Column(
                       children: [
                         Container(
@@ -66,23 +66,53 @@ class _MyDashboardScreenState extends State<MyDashboardScreen> {
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(24.r),
                                   topLeft: Radius.circular(24.r))),
-                          padding: EdgeInsets.only(top: 10.h),
-                          child: Column(children: [
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // const ShopCard(),
-                                  MineWallet(
-                                    // userController: userController,
+                          padding: EdgeInsets.only(
+                            top: 10.h,
+                          ),
+                          child: Column(
+                            children: [
+                              MineWallet(
+                                  // userController: userController,
                                   ),
-                                  MineOther(
-                                    userController: userController,
-                                  ),
-                                ]),
-                            SizedBox(
-                              height: 100.h,
-                            )
-                          ]),
+                            ],
+                          ),
+                        ),
+                        MineOther(
+                            // userController: userController,
+                            ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: Column(
+                            children: [
+                              _buildMenuItem(
+                                icon: Icons.image_outlined,
+                                title: 'Banner Upload',
+                                onTap: () => print('Banner Upload tapped'),
+                              ),
+                              SizedBox(
+                                height: 3.h,
+                              ),
+                              _buildMenuItem(
+                                icon: Icons.settings_outlined,
+                                title: 'Settings',
+                                onTap: () => print('Settings tapped'),
+                              ),
+                              SizedBox(
+                                height: 3.h,
+                              ),
+                              _buildMenuItem(
+                                icon: Icons.language_outlined,
+                                title: 'Language',
+                                onTap: () => print('Language tapped'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 100.h,
                         ),
                       ],
                     ),
@@ -116,7 +146,7 @@ class ProfileHeaderWidget extends StatelessWidget {
         Container(
           width: 80.w,
           height: 80.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.green,
             shape: BoxShape.circle,
           ),
@@ -223,4 +253,62 @@ class _Badge extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _buildMenuItem({
+  required IconData icon,
+  required String title,
+  required VoidCallback onTap,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      margin: EdgeInsets.symmetric(vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            // decoration: BoxDecoration(
+            //   color: Colors.grey[100],
+            //   borderRadius: BorderRadius.circular(8),
+            // ),
+            child: Icon(
+              icon,
+              color: Colors.black,
+              size: 23.sp,
+            ),
+          ),
+          SizedBox(width: 10.w),
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          Icon(
+            Icons.chevron_right,
+            color: Colors.grey[400],
+            size: 20,
+          ),
+        ],
+      ),
+    ),
+  );
 }

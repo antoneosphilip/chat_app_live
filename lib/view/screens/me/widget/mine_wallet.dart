@@ -9,9 +9,10 @@ class MineWallet extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Wallet Card
-          Expanded(
+          const Expanded(
             flex: 2,
             child: WalletCard(balance: 0),
           ),
@@ -23,9 +24,9 @@ class MineWallet extends StatelessWidget {
               children: [
                 // Sada Levels
                 Container(
-                  height: 46.h,
+                  height: 55.h,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Color(0xFF7EE8FA), Color(0xFF80FF72)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -66,12 +67,12 @@ class MineWallet extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 8.h),
+                SizedBox(height: 15.h),
                 // Medals Wall
                 Container(
-                  height: 46.h,
+                  height: 55.h,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Color(0xFFF9D776), Color(0xFFD7B46A)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -153,8 +154,8 @@ class WalletCard extends StatelessWidget {
               children: [
                 Image.network(
                   'https://pngimg.com/uploads/wallet/wallet_PNG77077.png',
-                  width: 25.w,
-                  height: 25.w,
+                  width: 35.w,
+                  height: 35.w,
                 ),
                 SizedBox(width: 10.w),
                 Text(
@@ -168,8 +169,8 @@ class WalletCard extends StatelessWidget {
                 Spacer(),
                 Image.network(
                   'https://pngimg.com/uploads/crown/crown_PNG23846.png',
-                  width: 42.w,
-                  height: 42.w,
+                  width: 35.w,
+                  height: 35.w,
                 ),
               ],
             ),

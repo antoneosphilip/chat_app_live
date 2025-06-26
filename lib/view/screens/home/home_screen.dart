@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_app/controller/splash_controller.dart';
+import 'package:live_app/view/screens/home/mine_screen.dart';
 import 'package:live_app/view/screens/home/my_rooms_screen.dart';
 import 'package:live_app/view/screens/home/rooms_screen.dart';
 import 'package:live_app/view/screens/home/widget/home_appbar.dart';
@@ -41,16 +42,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             onTabChanged: _onTabChanged,
             initialIndex: selectedTabIndex,
           ),
-        
         ),
         body: TabBarView(
           controller: _tabController,
           children: [
             // Tab 1: Hot (RoomsScreen)
             const RoomsScreen(),
-           
+
             // Tab 2: Mine (MyRoomsScreen)
-            const RoomsScreen(),
+            MineScreen(),
 
             // Tab 3: Explore (يمكنك إنشاء شاشة جديدة أو استخدام شاشة موجودة)
             _buildExploreScreen(),
@@ -85,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(height: 10),
-            
             Text(
               'Coming Soon...',
               style: TextStyle(
@@ -228,7 +227,6 @@ class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
 // Custom AppBar with Tabs
 class CustomAppBarWithTabs extends StatelessWidget
     implements PreferredSizeWidget {
- 
   final Widget tabBarwidget;
   final double? height;
 
@@ -259,5 +257,5 @@ class CustomAppBarWithTabs extends StatelessWidget
   }
 
   @override
-  Size get preferredSize =>  Size.fromHeight(height??100);
+  Size get preferredSize => Size.fromHeight(height ?? 100);
 }
