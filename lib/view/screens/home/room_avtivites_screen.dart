@@ -152,8 +152,8 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
                                 // Ongoing Activities
                                 _buildActivitiesList([
                                   ActivityItem(
-                                    title: 'وقاسيسيسيسيسيسيسة',
-                                    subtitle: 'وقاسيسيسيسيسيسيسيسيسة',
+                                    title: 'وقاسيسيسيسيسيسيسيسة',
+                                    subtitle: 'وقاسيسيسيسيسيسيسيسيسيسة',
                                     time: '06/26 22:56',
                                     participants: '5 people have joined',
                                     image: 'assets/concert_bg.jpg',
@@ -337,7 +337,7 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
           BoxShadow(
             color: color.withOpacity(0.3),
             blurRadius: 10,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -348,7 +348,7 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
           Container(
             width: 45,
             height: 45,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -405,7 +405,7 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
               height: 80,
               child: icon,
             ),
-            SizedBox(width: 16),
+            SizedBox(width: 16.w),
             // Achievement Details
             Expanded(
               child: Column(
@@ -413,13 +413,13 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                       height: 1.4,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   Row(
                     children: [
                       Text(
@@ -469,67 +469,67 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
           ],
         ),
         if (!isLast) ...[
-          SizedBox(height: 12),
-          // السهم والخط بمحاذاة اليسار أسفل الصورة
+          SizedBox(height: 20.h),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(width: 40), // محاذاة السهم مع منتصف الصورة
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.white24,
-                        size: 32,
-                      ),
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      Positioned(
-                        bottom: -6,
-                        child: Container(
-                          width: 6,
-                          height: 6,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white.withOpacity(0.5),
-                                blurRadius: 6,
-                                spreadRadius: 1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 6.0, bottom: 12.0),
-                    child: Container(
-                      width: 80,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.white.withOpacity(0.0),
-                            Colors.white.withOpacity(0.18),
-                            Colors.white.withOpacity(0.0),
+              Container(
+                width: 80,
+                alignment: Alignment.center,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.white24,
+                      size: 32,
+                    ),
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    Positioned(
+                      bottom: -6,
+                      child: Container(
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withOpacity(0.5),
+                              blurRadius: 6,
+                              spreadRadius: 1,
+                            ),
                           ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
                         ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          // الخط مباشرة بعد السهم
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 220,
+                height: 1,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.white.withOpacity(0.0),
+                      Colors.white.withOpacity(0.18),
+                      Colors.white.withOpacity(0.0),
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
                   ),
-                ],
+                ),
               ),
             ],
           ),
@@ -694,4 +694,25 @@ class ActivityItem {
     required this.participants,
     required this.image,
   });
+}
+
+class _ArrowPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 2); // ظل خفيف
+
+    final path = Path();
+    path.moveTo(size.width / 2, 0); // رأس السهم
+    path.lineTo(0, size.height);
+    path.lineTo(size.width, size.height);
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
