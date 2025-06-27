@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:live_app/view/screens/home/widget/create_room_bottom_sheet.dart';
+import 'package:live_app/view/screens/home/widget/recently_screen.dart';
 
 class MineScreen extends StatefulWidget {
   @override
@@ -28,7 +30,7 @@ class _MineScreenState extends State<MineScreen>
       backgroundColor: Colors.grey[100],
       body: Column(
         children: [
-          SizedBox(height: 95.h),
+          SizedBox(height: 100.h),
           MyRoomCard(),
           SizedBox(height: 8.h),
           Container(
@@ -49,7 +51,7 @@ class _MineScreenState extends State<MineScreen>
                 fontSize: 16.sp,
                 fontWeight: FontWeight.normal,
               ),
-              tabs: [
+              tabs: const [
                 Tab(text: 'Liked'),
                 Tab(text: 'Recently'),
               ],
@@ -62,7 +64,7 @@ class _MineScreenState extends State<MineScreen>
                 // Liked Tab Content
                 _buildEmptyState(),
                 // Recently Tab Content
-                _buildEmptyState(),
+                RecentlyScreen(),
               ],
             ),
           ),
@@ -145,86 +147,99 @@ class MyRoomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
-      child: Container(
-        width: double.infinity,
-        height: 80.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
-          color: Colors.white,
-          // gradient: LinearGradient(
-          //   colors: [
-          //     const Color(0xFFFDF6E3),
-          //     const Color(0xFFE3F6FD),
-          //   ],
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          // ),
-        ),
-        child: Stack(
-          children: [
-            // Faint house icon on the right
-            Positioned(
-              right: 12.w,
-              top: 8.h,
-              child: Opacity(
-                opacity: 0.18,
-                child: Icon(
-                  Icons.home_outlined,
-                  size: 48.w,
-                  color: Colors.teal[200],
+    return InkWell(
+      onTap: () {
+        showModalBottomSheet(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(20),
+            ),
+          ),
+          context: context,
+          builder: (context) => const CreateRoomBottomSheet(),
+        );
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Container(
+          width: double.infinity,
+          height: 80.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.r),
+            color: Colors.white,
+            // gradient: LinearGradient(
+            //   colors: [
+            //     const Color(0xFFFDF6E3),
+            //     const Color(0xFFE3F6FD),
+            //   ],
+            //   begin: Alignment.topLeft,
+            //   end: Alignment.bottomRight,
+            // ),
+          ),
+          child: Stack(
+            children: [
+              // Faint house icon on the right
+              Positioned(
+                right: 12.w,
+                top: 20.h,
+                child: Opacity(
+                  opacity: 0.18,
+                  child: Icon(
+                    Icons.home_outlined,
+                    size: 48.w,
+                    color: Colors.teal[200],
+                  ),
                 ),
               ),
-            ),
-            Row(
-              children: [
-                SizedBox(width: 16.w),
-                Container(
-                  width: 48.w,
-                  height: 48.w,
-                  decoration: BoxDecoration(
-                    color: Colors.green[700],
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'A',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28.sp,
-                      fontWeight: FontWeight.bold,
+              Row(
+                children: [
+                  SizedBox(width: 8.w),
+                  Container(
+                    width: 60.w,
+                    height: 60.h,
+                    decoration: BoxDecoration(
+                      color: Colors.green[700],
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'A',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: 16.w),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'MyRoom',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'MyRoom',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 4.h),
-                      Text(
-                        'Start My Sada Journey',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.grey[700],
+                        SizedBox(height: 4.h),
+                        Text(
+                          'Start My Sada Journey',
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.grey[700],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

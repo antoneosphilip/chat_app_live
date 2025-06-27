@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_app/controller/splash_controller.dart';
+import 'package:live_app/view/screens/home/explore_screen.dart';
 import 'package:live_app/view/screens/home/mine_screen.dart';
 import 'package:live_app/view/screens/home/my_rooms_screen.dart';
 import 'package:live_app/view/screens/home/rooms_screen.dart';
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             MineScreen(),
 
             // Tab 3: Explore (يمكنك إنشاء شاشة جديدة أو استخدام شاشة موجودة)
-            _buildExploreScreen(),
+            ExploreScreen(),
           ],
         ),
       );

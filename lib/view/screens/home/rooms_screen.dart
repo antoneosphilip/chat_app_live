@@ -150,7 +150,7 @@ class _RoomsScreenState extends State<RoomsScreen> {
                               child: GridView.builder(
                                 shrinkWrap: true,
                                 physics:
-                                    NeverScrollableScrollPhysics(), // لو داخل ScrollView
+                                    const NeverScrollableScrollPhysics(), // لو داخل ScrollView
                                 padding: EdgeInsets.zero,
                                 itemCount: homeController.staticRoomGrid.length,
                                 gridDelegate:
@@ -178,7 +178,7 @@ class _RoomsScreenState extends State<RoomsScreen> {
                                       Row(
                                         children: [
                                           Image(
-                                            image: NetworkImage(
+                                            image: const NetworkImage(
                                                 'https://th.bing.com/th/id/OIP.4ve4zACsz1LZOlMcCUHGBAHaE8?rs=1&pid=ImgDetMain'),
                                             width: 12.w,
                                             height: 12.h,
