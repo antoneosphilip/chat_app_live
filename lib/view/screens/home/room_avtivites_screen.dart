@@ -31,11 +31,11 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
             colors: [
-              Color(0xFF8B5CF6),
-              Color(0xFFEC4899),
+              Color(0xFF9B59B6), // Purple
+              Color(0xFF87CEEB), // Light blue
             ],
           ),
         ),
@@ -43,30 +43,66 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
           child: Column(
             children: [
               // Header with back button and title
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: Icon(Icons.arrow_back, color: Colors.white),
-                  ),
-                  Expanded(
-                    child: Text(
-                      'Room Activities',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.add, color: Colors.white),
-                  ),
-                ],
+                    Expanded(
+                      child: Text(
+                        'Room Activities',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Icon(
+                            Icons.celebration,
+                            color: Colors.orange,
+                            size: 40,
+                          ),
+                          Positioned(
+                            right: -4,
+                            bottom: -8,
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF1DE9B6), // أخضر مزرق
+                                shape: BoxShape.circle,
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 17,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    )
+                  ],
+                ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 5),
 
               // Main TabBar (Activity Square / Rewards)
               Container(
@@ -89,7 +125,7 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               // Content Area
               Expanded(
@@ -152,8 +188,8 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
                                 // Ongoing Activities
                                 _buildActivitiesList([
                                   ActivityItem(
-                                    title: 'وقاسيسيسيسيسيسيسيسة',
-                                    subtitle: 'وقاسيسيسيسيسيسيسيسيسيسة',
+                                    title: 'وقاسيسيسيسيسيسيسيسيسة',
+                                    subtitle: 'وقاسيسيسيسيسيسيسيسيسيسيسة',
                                     time: '06/26 22:56',
                                     participants: '5 people have joined',
                                     image: 'assets/concert_bg.jpg',
@@ -203,7 +239,7 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
 
                       // Rewards Tab Content
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
