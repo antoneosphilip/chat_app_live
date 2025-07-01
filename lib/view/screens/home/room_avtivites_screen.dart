@@ -66,7 +66,7 @@ class _RoomActivitiesScreenState extends State<RoomActivitiesScreen>
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Stack(
+                      icon: Stack(  
                         clipBehavior: Clip.none,
                         children: [
                           Icon(

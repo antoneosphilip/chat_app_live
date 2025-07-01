@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:live_app/controller/home_controller.dart';
+import 'package:live_app/view/screens/home/activity_details_sreen.dart';
+import 'package:live_app/view/screens/home/event_screen';
+import 'package:live_app/view/screens/home/pk_arena_screen.dart';
 import 'package:live_app/view/screens/home/room_avtivites_screen.dart';
 import 'package:live_app/view/screens/home/widget/top_home.dart';
 
@@ -49,10 +52,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: _buildActionButton(
-                          'PK',
-                          const Color(0xFF2196F3),
-                          Icons.sports_esports,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => PKArenaScreen());
+                          },
+                          child: _buildActionButton(
+                            'PK',
+                            const Color(0xFF2196F3),
+                            Icons.sports_esports,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -168,7 +176,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 const SizedBox(height: 25),
 
                 // قسم Room Activities
-                 Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -275,143 +283,158 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   Widget _buildActionButton(String title, Color color, IconData icon) {
-    return Container(
-      height: 52.h,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.3),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 10.w,
-          ),
-          Expanded(
-            child: Icon(
-              icon,
-              color: Colors.white,
-              size: 28.sp,
+    return InkWell(
+      onTap: () {
+        if (title == 'PK') {
+          Get.to(() => PKArenaScreen());
+        }
+        if (title == 'Events') {
+          Get.to(() => EventsCenterScreen());
+        }
+      },
+      child: Container(
+        height: 52.h,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: color.withOpacity(0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
             ),
-          ),
-          const Spacer(),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 10.w,
             ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-        ],
+            Expanded(
+              child: Icon(
+                icon,
+                color: Colors.white,
+                size: 28.sp,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+            ),
+            SizedBox(
+              width: 10.w,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildActivityCard(String title, String time) {
-    return Container(
-      width: 180.w,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 8.h),
-            child: Container(
-              height: 90,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF2196F3), Color(0xFF64B5F6)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+    return InkWell(
+      onTap: () {
+        Get.to(() => ActivityDetailsScreen());
+      },
+      child: Container(
+        width: 180.w,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 8.h),
+              child: Container(
+                height: 90,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF2196F3), Color(0xFF64B5F6)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8.r)),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8.r)),
-              ),
-              child: Stack(
-                children: [
-                  // خلفية مع نجوم
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                        ),
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.white.withOpacity(0.1),
-                            Colors.transparent,
-                          ],
+                child: Stack(
+                  children: [
+                    // خلفية مع نجوم
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            topRight: Radius.circular(12),
+                          ),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(0.1),
+                              Colors.transparent,
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const Center(
-                    child: Icon(
-                      Icons.mic,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 8.w, top: 4.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.access_time,
-                      size: 14,
-                      color: Colors.blue[600],
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      time,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[600],
+                    const Center(
+                      child: Icon(
+                        Icons.mic,
+                        color: Colors.white,
+                        size: 40,
                       ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.only(left: 8.w, top: 4.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.access_time,
+                        size: 14,
+                        color: Colors.blue[600],
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        time,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
