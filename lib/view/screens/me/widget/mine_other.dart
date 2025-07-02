@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:live_app/view/screens/vip/new_vip_screen.dart';
+import 'package:live_app/view/screens/vip/vip_screen.dart';
 
 class MineOther extends StatelessWidget {
   const MineOther({super.key});
@@ -7,7 +11,8 @@ class MineOther extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<_MineIconData> items = [
-      _MineIconData('👑', 'Vip', Colors.orange, () => print('Vip tapped')),
+      _MineIconData(
+          '👑', 'Vip', Colors.orange, () => Get.to(() => NewVipScreen())),
       _MineIconData('🏪', 'Store', Colors.pink, () => print('Store tapped')),
       _MineIconData('🎒', 'Bag', Colors.teal, () => print('Bag tapped')),
       _MineIconData('💌', 'Invite', Colors.blue, () => print('Invite tapped')),

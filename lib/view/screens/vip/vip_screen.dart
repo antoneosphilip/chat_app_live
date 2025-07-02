@@ -50,212 +50,210 @@ class _VipScreenState extends State<VipScreen> {
                 // vipController.isLoading == true
                 if (false) {
                   return const Center(
-                        child: LoadingIndicator(),
-                      );
+                    child: LoadingIndicator(),
+                  );
                 } else {
                   return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 45.h,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 50,
-                            child: TabBar(
-                              isScrollable: true,
-                              controller: vipController.tabController,
-                              indicatorColor: Colors.white,
-                              indicatorWeight: 3,
-                              indicatorPadding:
-                                  EdgeInsets.symmetric(horizontal: 20.w),
-                              labelColor: Colors.white,
-                              unselectedLabelColor:
-                                  Theme.of(context).disabledColor,
-                              tabs: [
-                                ...vipController.vipListStatic.map((e) => Tab(
-                                      text: 'vip${e.no}',
-                                    ))
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            child: TabBarView(
-                              controller: vipController.tabController,
-                              children: [
-                                ...vipController.vipListStatic.map(
-                                  (e) => Center(
-                                    child: Container(
-                                      child: SvgWithPngAndText(
-                                        width: 200,
-                                        height: 200,
-                                        svgPath:
-                                            "${AppConstants.baseUrl}/${e.thumbnail}",
-                                      ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 45.h,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: TabBar(
+                          isScrollable: true,
+                          controller: vipController.tabController,
+                          indicatorColor: Colors.white,
+                          indicatorWeight: 3,
+                          indicatorPadding:
+                              EdgeInsets.symmetric(horizontal: 20.w),
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Theme.of(context).disabledColor,
+                          tabs: [
+                            ...vipController.vipListStatic.map((e) => Tab(
+                                  text: 'vip${e.no}',
+                                ))
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        child: TabBarView(
+                          controller: vipController.tabController,
+                          children: [
+                            ...vipController.vipListStatic.map(
+                              (e) => Center(
+                                child: Container(
+                                  child: SvgWithPngAndText(
+                                    width: 200,
+                                    height: 200,
+                                    svgPath:
+                                        "${AppConstants.baseUrl}/${e.thumbnail}",
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/vip_big_bg.webp'),
+                                  fit: BoxFit.fill)),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 30),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white54,
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
+                                  child: Text(
+                                    '${'Privileges'.tr} ${vipController.selectedVipStatic?.activePrivilegesCount}/${vipController.selectedVipStatic?.allPrivilegesCount}',
+                                    style: const TextStyle(color: Colors.white),
                                   ),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/vip_big_bg.webp'),
-                                      fit: BoxFit.fill)),
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 30),
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white54,
-                                        borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(50),
-                                          bottomLeft: Radius.circular(50),
-                                        ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: GridView.builder(
+                                      itemCount:
+                                          vipController.selectedVipStatic !=
+                                                  null
+                                              ? vipController.selectedVipStatic!
+                                                  .privileges?.length
+                                              : 0,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 4,
                                       ),
-                                      child: Text(
-                                        '${'Privileges'.tr} ${vipController.selectedVipStatic?.activePrivilegesCount}/${vipController.selectedVipStatic?.allPrivilegesCount}',
-                                        style: const TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Container(
-                                      child: GridView.builder(
-                                          itemCount:
-                                              vipController.selectedVipStatic != null
-                                                  ? vipController.selectedVipStatic!
-                                                      .privileges?.length
-                                                  : 0,
-                                          gridDelegate:
-                                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 4,
-                                          ),
-                                          itemBuilder: (context, index) {
-                                            return InkWell(
-                                              onTap: () {
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
+                                          onTap: () {
+                                            if (vipController
+                                                    .selectedVipStatic!
+                                                    .privileges![index]
+                                                    .isActive ==
+                                                true) {
+                                              Widget? content;
+                                              if (vipController
+                                                      .selectedVipStatic!
+                                                      .privileges![index]
+                                                      .image !=
+                                                  null) {
                                                 if (vipController
                                                         .selectedVipStatic!
                                                         .privileges![index]
-                                                        .isActive ==
-                                                    true) {
-                                                  Widget? content;
-                                                  if (vipController
-                                                          .selectedVipStatic!
-                                                          .privileges![index]
-                                                          .image !=
-                                                      null) {
-                                                    if (vipController
-                                                            .selectedVipStatic!
-                                                            .privileges![index]
-                                                            .imageType ==
-                                                        'animated') {
-                                                      content = SVGASimpleImage(
-                                                        resUrl:
-                                                            "${AppConstants.baseUrl}/${vipController.selectedVipStatic!.privileges![index].image}",
-                                                      );
-                                                    } else {
-                                                      content = CustomImage(
-                                                          image:
-                                                              "${AppConstants.baseUrl}/${vipController.selectedVipStatic!.privileges![index].image}");
-                                                    }
-                                                  } else {
-                                                    String? color =
-                                                        vipController
-                                                            .selectedVipStatic!
-                                                            .privileges![index]
-                                                            .color;
-                                                    int colorInt =
-                                                        int.parse("0xFF$color");
-                                                    content = Text(
-                                                      '${vipController.selectedVipStatic!.privileges![index].title}',
-                                                      style: TextStyle(
-                                                        color: Color(colorInt),
-                                                      ),
-                                                    );
-                                                  }
-                                                  Get.defaultDialog(
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      title:
-                                                          "${vipController.selectedVipStatic!.privileges![index].title}",
-                                                      content: Container(
-                                                        height: MediaQuery.of(
-                                                                    context)
+                                                        .imageType ==
+                                                    'animated') {
+                                                  content = SVGASimpleImage(
+                                                    resUrl:
+                                                        "${AppConstants.baseUrl}/${vipController.selectedVipStatic!.privileges![index].image}",
+                                                  );
+                                                } else {
+                                                  content = CustomImage(
+                                                      image:
+                                                          "${AppConstants.baseUrl}/${vipController.selectedVipStatic!.privileges![index].image}");
+                                                }
+                                              } else {
+                                                String? color = vipController
+                                                    .selectedVipStatic!
+                                                    .privileges![index]
+                                                    .color;
+                                                int colorInt =
+                                                    int.parse("0xFF$color");
+                                                content = Text(
+                                                  '${vipController.selectedVipStatic!.privileges![index].title}',
+                                                  style: TextStyle(
+                                                    color: Color(colorInt),
+                                                  ),
+                                                );
+                                              }
+                                              Get.defaultDialog(
+                                                  backgroundColor: Colors.white,
+                                                  title:
+                                                      "${vipController.selectedVipStatic!.privileges![index].title}",
+                                                  content: Container(
+                                                    height:
+                                                        MediaQuery.of(context)
                                                                 .size
                                                                 .height *
                                                             0.3,
-                                                        child: Center(
-                                                          child: content,
-                                                        ),
-                                                      ));
-                                                }
-                                              },
-                                              child: Container(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    CustomImage(
-                                                      height: 30,
-                                                      width: 30,
-                                                      image:
-                                                          "${AppConstants.baseUrl}/${vipController.selectedVipStatic!.privileges![index].thumbnail}",
+                                                    child: Center(
+                                                      child: content,
                                                     ),
-                                                    SizedBox(
-                                                      height: 10.h,
-                                                    ),
-                                                    Text(
-                                                      "${vipController.selectedVipStatic!.privileges![index].title}",
-                                                      style: TextStyle(
-                                                          fontSize: 8,
-                                                          color: vipController
-                                                                      .selectedVipStatic!
-                                                                      .privileges?[
-                                                                          index]
-                                                                      .isActive ==
-                                                                  true
-                                                              ? Colors.white
-                                                              : Colors.white54),
-                                                    ),
-                                                  ],
+                                                  ));
+                                            }
+                                          },
+                                          child: Container(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomImage(
+                                                  height: 30,
+                                                  width: 30,
+                                                  image:
+                                                      "${AppConstants.baseUrl}/${vipController.selectedVipStatic!.privileges![index].thumbnail}",
                                                 ),
-                                              ),
-                                            );
-                                          }),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                bottom: 20, top: 10, left: 10, right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '${'open'.tr} vip${vipController.selectedVipStatic?.no} : ${vipController.selectedVipStatic?.price} ${'for'.tr} ${vipController.selectedVipStatic?.duration} ${'days'.tr}',
-                                  style: TextStyle(color: Colors.white),
+                                                SizedBox(
+                                                  height: 10.h,
+                                                ),
+                                                Text(
+                                                  "${vipController.selectedVipStatic!.privileges![index].title}",
+                                                  style: TextStyle(
+                                                      fontSize: 8,
+                                                      color: vipController
+                                                                  .selectedVipStatic!
+                                                                  .privileges?[
+                                                                      index]
+                                                                  .isActive ==
+                                                              true
+                                                          ? Colors.white
+                                                          : Colors.white54),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }),
                                 ),
-                                ElevatedButton(
-                                    onPressed: () {}, child: Text('buy'.tr))
-                              ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            bottom: 20, top: 10, left: 10, right: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${'open'.tr} vip${vipController.selectedVipStatic?.no} : ${vipController.selectedVipStatic?.price} ${'for'.tr} ${vipController.selectedVipStatic?.duration} ${'days'.tr}',
+                              style: TextStyle(color: Colors.white),
                             ),
-                          )
-                        ],
-                      );
+                            ElevatedButton(
+                                onPressed: () {}, child: Text('buy'.tr))
+                          ],
+                        ),
+                      )
+                    ],
+                  );
                 }
               },
             )),

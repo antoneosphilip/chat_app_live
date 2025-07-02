@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_app/controller/splash_controller.dart';
-import 'package:live_app/view/screens/home/explore_screen.dart';
+import 'package:live_app/view/screens/explore/explore_screen.dart';
 import 'package:live_app/view/screens/home/mine_screen.dart';
 import 'package:live_app/view/screens/home/my_rooms_screen.dart';
 import 'package:live_app/view/screens/home/rooms_screen.dart';
