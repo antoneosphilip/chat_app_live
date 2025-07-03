@@ -622,123 +622,12 @@ class VipPrivilegeDetailsSheet extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
               // Users grid
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(16.r),
-                  border: Border.all(color: Color(0xFFFFD700), width: 1.2.w),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.12),
-                      blurRadius: 12.r,
-                      spreadRadius: 1.r,
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(8.w),
-                child: Column(
-                  children: [
-                    // Top bar inside container
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 2.w),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.08),
-                        borderRadius: BorderRadius.circular(12.r),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.08),
-                            blurRadius: 8.r,
-                            spreadRadius: 1.r,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.emoji_events,
-                              color: Color(0xFFFFD700), size: 18.w),
-                          SizedBox(width: 4.w),
-                          Text('17.4M',
-                              style: TextStyle(
-                                  color: Color(0xFFFFD700),
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.bold)),
-                          SizedBox(width: 16.w),
-                          Icon(Icons.music_note,
-                              color: Colors.white, size: 18.w),
-                          SizedBox(width: 4.w),
-                          Text('Play Music',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 13.sp)),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    // Users grid
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 9,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 5,
-                        mainAxisSpacing: 12.h,
-                        crossAxisSpacing: 8.w,
-                        childAspectRatio: 0.8,
-                      ),
-                      itemBuilder: (context, i) => Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Stack(
-                            alignment: Alignment.bottomCenter,
-                            children: [
-                              CircleAvatar(
-                                radius: 28.w,
-                                backgroundImage: AssetImage(
-                                    'assets/images/top1.webp'), // Placeholder
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                child: Image.asset(
-                                  'assets/images/top1.webp',
-                                  width: 36.w,
-                                  height: 20.h,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            i == 4 ? 'Username' : 'اسم المستخدم',
-                            style: TextStyle(
-                              color: i == 4 ? Colors.amber : Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight:
-                                  i == 4 ? FontWeight.bold : FontWeight.normal,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(height: 2.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.card_giftcard,
-                                  color: Colors.redAccent, size: 14.w),
-                              SizedBox(width: 2.w),
-                              Text('678',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 11.sp)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ListView.separated(
+                  separatorBuilder: (_, __) => SizedBox(height: 16.h),
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: 9,
+                  itemBuilder: (context, i) => VipUsersGrid()),
             ],
           ),
         ),
@@ -1025,6 +914,125 @@ class _VipBottomBar extends StatelessWidget {
                     color: Colors.black,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class VipUsersGrid extends StatelessWidget {
+  const VipUsersGrid({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: Color(0xFFFFD700), width: 1.2.w),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.12),
+            blurRadius: 12.r,
+            spreadRadius: 1.r,
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(8.w),
+      child: Column(
+        children: [
+          // Top bar inside container
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 2.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(12.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.08),
+                  blurRadius: 8.r,
+                  spreadRadius: 1.r,
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.emoji_events, color: Color(0xFFFFD700), size: 18.w),
+                SizedBox(width: 4.w),
+                Text('17.4M',
+                    style: TextStyle(
+                        color: Color(0xFFFFD700),
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.bold)),
+                SizedBox(width: 16.w),
+                Icon(Icons.music_note, color: Colors.white, size: 18.w),
+                SizedBox(width: 4.w),
+                Text('Play Music',
+                    style: TextStyle(color: Colors.white, fontSize: 13.sp)),
+              ],
+            ),
+          ),
+          SizedBox(height: 20.h),
+          // Users grid
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 9,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 5,
+              mainAxisSpacing: 12.h,
+              crossAxisSpacing: 8.w,
+              childAspectRatio: 0.5.h,
+            ),
+            itemBuilder: (context, i) => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    CircleAvatar(
+                      radius: 28.w,
+                      backgroundImage:
+                          AssetImage('assets/images/top1.webp'), // Placeholder
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      child: Image.asset(
+                        'assets/images/top1.webp',
+                        width: 36.w,
+                        height: 20.h,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                  i == 4 ? 'Username' : 'اسم المستخدم',
+                  style: TextStyle(
+                    color: i == 4 ? Colors.amber : Colors.white,
+                    fontSize: 12.sp,
+                    fontWeight: i == 4 ? FontWeight.bold : FontWeight.normal,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 2.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.card_giftcard,
+                        color: Colors.redAccent, size: 14.w),
+                    SizedBox(width: 2.w),
+                    Text('678',
+                        style: TextStyle(color: Colors.white, fontSize: 11.sp)),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

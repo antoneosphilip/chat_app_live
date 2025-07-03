@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:live_app/view/screens/bag/bag_screen.dart';
+import 'package:live_app/view/screens/guild/guild_screen.dart';
+import 'package:live_app/view/screens/store/new_store_screen.dart';
 import 'package:live_app/view/screens/vip/new_vip_screen.dart';
 import 'package:live_app/view/screens/vip/vip_screen.dart';
 
@@ -13,10 +16,12 @@ class MineOther extends StatelessWidget {
     final List<_MineIconData> items = [
       _MineIconData(
           '👑', 'Vip', Colors.orange, () => Get.to(() => NewVipScreen())),
-      _MineIconData('🏪', 'Store', Colors.pink, () => print('Store tapped')),
-      _MineIconData('🎒', 'Bag', Colors.teal, () => print('Bag tapped')),
+      _MineIconData(
+          '🏪', 'Store', Colors.pink, () => Get.to(() => GameStoreScreen())),
+      _MineIconData('🎒', 'Bag', Colors.teal, () => Get.to(() => BagScreen())),
       _MineIconData('💌', 'Invite', Colors.blue, () => print('Invite tapped')),
-      _MineIconData('🛡️', 'Guild', Colors.purple, () => print('Guild tapped')),
+      _MineIconData(
+          '🛡️', 'Guild', Colors.purple, () => Get.to(() => GuildScreen())),
       _MineIconData('📋', 'Task', Colors.green, () => print('Task tapped')),
       _MineIconData(
           '🎁', 'Rewards', Colors.orange, () => print('Rewards tapped')),
