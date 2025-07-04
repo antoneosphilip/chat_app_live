@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:live_app/view/screens/bag/bag_screen.dart';
 import 'package:live_app/view/screens/guild/guild_screen.dart';
+import 'package:live_app/view/screens/invite_friends/new_invite_screen.dart';
+import 'package:live_app/view/screens/rewards/rewards_point_center.dart';
+import 'package:live_app/view/screens/rewards/rewards_screen.dart';
 import 'package:live_app/view/screens/store/new_store_screen.dart';
+import 'package:live_app/view/screens/task_community/task_community.dart';
 import 'package:live_app/view/screens/vip/new_vip_screen.dart';
 import 'package:live_app/view/screens/vip/vip_screen.dart';
 
@@ -19,14 +23,16 @@ class MineOther extends StatelessWidget {
       _MineIconData(
           '🏪', 'Store', Colors.pink, () => Get.to(() => GameStoreScreen())),
       _MineIconData('🎒', 'Bag', Colors.teal, () => Get.to(() => BagScreen())),
-      _MineIconData('💌', 'Invite', Colors.blue, () => print('Invite tapped')),
+      _MineIconData(
+          '💌', 'Invite', Colors.blue, () => Get.to(() => InviteScreen())),
       _MineIconData(
           '🛡️', 'Guild', Colors.purple, () => Get.to(() => GuildScreen())),
-      _MineIconData('📋', 'Task', Colors.green, () => print('Task tapped')),
+      _MineIconData('📋', 'Task', Colors.green,
+          () => Get.to(() => TaskCommunityScreen())),
       _MineIconData(
-          '🎁', 'Rewards', Colors.orange, () => print('Rewards tapped')),
+          '🎁', 'Rewards', Colors.orange, () => Get.to(() => RewardsScreen())),
       _MineIconData('🏆', 'Points Center', Colors.amber,
-          () => print('Points Center tapped')),
+          () => Get.to(() => RewardsPointsCenter())),
     ];
     return SafeArea(
       child: Padding(

@@ -627,7 +627,8 @@ class VipPrivilegeDetailsSheet extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: 9,
-                  itemBuilder: (context, i) => VipUsersGrid()),
+                  itemBuilder: (context, i) => VipUsersGrid()
+                  ),
             ],
           ),
         ),
