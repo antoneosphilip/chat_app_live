@@ -308,126 +308,144 @@ class _TaskCommunityScreenState extends State<TaskCommunityScreen> {
     required String status,
     required String progress,
   }) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 0),
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // أيقونة المهمة
-          Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Color(0xFFB2F0FF),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  type,
-                  style: TextStyle(
-                    color: Color(0xFF00BFAE),
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+    return Stack(
+      alignment: Alignment.topLeft,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 6, horizontal: 0),
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
               ),
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: Color(0xFF1DE9B6).withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Icon(
-                    icon,
-                    color: Color(0xFF00BFAE),
-                    size: 22,
-                  ),
-                ),
-              ),
-              SizedBox(height: 4),
             ],
           ),
-          SizedBox(width: 12),
-          // العنوان والمكافأة
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Color(0xFF222222),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Row(
-                  children: [
-                    Icon(
-                      rewardIcon,
-                      color: Colors.amber,
-                      size: 24,
+          child: Row(
+            children: [
+              // أيقونة المهمة مع النوع
+              Column(
+                children: [
+                  // نوع المهمة
+
+                  SizedBox(height: 8),
+                  // أيقونة المهمة
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1DE9B6).withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    SizedBox(width: 4),
+                    child: Center(
+                      child: Icon(
+                        icon,
+                        color: Color(0xFF00BFAE),
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 16),
+              // العنوان والمكافأة
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // العنوان
                     Text(
-                      rewardText,
+                      title,
                       style: TextStyle(
                         color: Color(0xFF222222),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                       ),
+                    ),
+                    SizedBox(height: 12),
+                    // المكافأة
+                    Row(
+                      children: [
+                        Icon(
+                          rewardIcon,
+                          color: Colors.amber,
+                          size: 20,
+                        ),
+                        SizedBox(width: 6),
+                        Text(
+                          rewardText,
+                          style: TextStyle(
+                            color: Color(0xFF666666),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          // الحالة والتقدم
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Color(0xFF1DE9B6),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  status,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
               ),
-              SizedBox(height: 8),
-              Text(
-                progress,
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14,
-                ),
+              // الحالة والتقدم
+              Column(
+                children: [
+                  // حالة المهمة
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1DE9B6),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      status,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  // التقدم
+                  Center(
+                    child: Text(
+                      progress,
+                      style: TextStyle(
+                        color: Color(0xFF999999),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: Color(0xFFB2F0FF),
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(16),
+              ),
+            ),
+            child: Text(
+              type,
+              style: TextStyle(
+                color: Color(0xFF00BFAE),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
